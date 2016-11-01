@@ -1,0 +1,47 @@
+<script>
+	(function () {
+		function getVars () {
+			var rawVars = window.location.search.match(/[?&]([^?&=]+)=([^?&]+)/g) || [];
+			var vars = {};
+			for (let rawVar of rawVars) {
+				let parts = rawVar.split('=');
+				let name = parts[0].substr(1);
+				let value = parts[1];
+				vars[name] = value;
+			}
+			return vars;
+		}
+
+		function getDimensions (size) {
+			var dimensions = [{
+				width: 426,
+				height: 240
+			}, {
+				width: 640,
+				height: 360
+			}, {
+				width: 854,
+				height: 480
+			}, {
+				width: 1280,
+				height: 720
+			}, {
+				width: 1920,
+				height: 1080
+			}];
+
+			size = Math.min((+size || 0), dimensions.length);
+			return dimensions[size];
+		}
+
+		var vars = getVars();
+
+		var host = vars.host || 'bcex-branches-www.dev.ustream.tv';
+		var size = vars.size || 0;
+		var dimensions = getDimensions(size);
+
+		var iframe = `<iframe src="//${host}/embed/recorded/92457559?html5ui&autoplay=true&volume=0" style="border: 0;" frameborder="no" width="${dimensions.width}" height="${dimensions.height}"></iframe>`;
+
+		document.write(iframe);
+	})();
+</script>
