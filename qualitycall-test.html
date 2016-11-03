@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="//static-cdn1.ustream.tv/v6/vendor/ustream-embedapi.js"></script>
+
+	<h3 id="IframeHost"></h3>
+	<iframe id="UstreamIframe" src="" frameborder="0" width="720" height="405" style="border: 0; width: 720px; height: 405px;"></iframe>
+
+	<script>
+		(function () {
+			var iframeCount = 2;
+			var host = window.location.search ? window.location.search.substr(1) : 'www.ustream.tv'; 
+			var url = '//' + host + '/embed/1524?html5ui&autoplay=true&volume=0';
+
+			document.getElementById('IframeHost').innerText = host;
+			document.getElementById('UstreamIframe').src = url;
+
+			var viewer = UstreamEmbed('UstreamIframe');
+			viewer.callMethod('quality', 0);
+		})();
+	</script>
+</body>
+</html>
